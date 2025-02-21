@@ -1,0 +1,43 @@
+// Import fonts from Google Fonts
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&family=Poppins:wght@400;500;600;700&display=swap");
+
+// Font Variables
+$font-primary: "Poppins", sans-serif; // For headings and important text
+$font-secondary: "Inter", sans-serif; // For body and general UI text
+$font-accent: "Playfair Display", serif; // For book titles or decorative text
+
+// Primary Colors
+$primary-bg: #f3f1eb; // Slightly warmer beige background
+$primary-text: #232323; // Darker text for better contrast
+$primary-accent: #cbb89a; // A richer brown-beige accent
+
+// Secondary Colors
+$secondary-bg: #ffffff; // Keeping white for contrast
+$secondary-text: #3d3d3d; // Deeper gray for better readability
+$secondary-accent: #dacfb8; // Slightly richer beige accent
+
+// Sidebar Colors
+$sidebar-bg: #f5f3ef; // A bit more depth in the light beige
+$sidebar-text: #3f3f3f; // Slightly darker for better contrast
+
+// Buttons & Inputs
+$button-bg: #ddd8d0; // Slightly warmer neutral for buttons
+$button-text: #232323; // Consistent dark text for readability
+$search-bg: #fafafa; // Very light gray instead of pure white
+$search-border: #bfbfbf; // Slightly darker gray border for better visibility
+
+// Book Card Colors
+$book-card-bg: #ffffff; // Keeping white for clarity
+$book-card-shadow: rgba(0, 0, 0, 0.12); // Slightly stronger shadow
+
+// Category Colors
+$category-bg: #e8e5de; // More muted beige for category background
+$category-text: #2f2f2f; // Slightly richer dark gray
+
+// Profile & Navigation
+$profile-text: #232323; // Darker for contrast
+$nav-hover: #cfc6b5; // Warmer, softer hover effect
+
+// Utility Colors
+$border-color: #d6d6d6; // Slightly darker gray for better separation
+$shadow-color: rgba(0, 0, 0, 0.07); // Slightly stronger shadow for depth
