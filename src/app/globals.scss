@@ -1,3 +1,4 @@
+@use "../styles/variables/variables" as v;
 * {
   margin: 0;
   padding: 0;
@@ -8,6 +9,8 @@
 }
 #root {
   min-height: 100dvh;
+  background-color: v.$primary-bg;
+  font-family: v.$font-secondary;
 }
 // html {
 //   scroll-behavior: smooth;
