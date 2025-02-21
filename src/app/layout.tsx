@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.scss";
+import { Sidebar } from "@/components";
 
 export const metadata: Metadata = {
   title: "BookNexus",
@@ -13,8 +14,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" id="root">
-      <body>{children}</body>
+    <html lang="en">
+      <body id="root">
+        <Sidebar />
+        {children}
+      </body>
     </html>
   );
 }
