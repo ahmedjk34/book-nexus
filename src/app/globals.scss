@@ -17,8 +17,11 @@
   grid-template-rows: auto 1fr;
   grid-template-columns: clamp(15vw, 250px, 25vw) 1fr;
 }
-// html {
-//   scroll-behavior: smooth;
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
 // }
 // ::-webkit-scrollbar {
 //   display: none;
