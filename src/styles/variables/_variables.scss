@@ -1,5 +1,5 @@
 // Import fonts from Google Fonts
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&family=Poppins:wght@400;500;600;700&family=Montserrat+Alternates:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&family=Poppins:wght@400;500;600;700&family=Montserrat+Alternates:wght@600;800&display=swap");
 
 // Font Variables
 $font-primary: "Poppins", sans-serif; // For headings and important text
@@ -25,6 +25,7 @@ $button-bg: #ddd8d0; // Slightly warmer neutral for buttons
 $button-text: #232323; // Consistent dark text for readability
 $search-bg: #fafafa; // Very light gray instead of pure white
 $search-border: #bfbfbf; // Slightly darker gray border for better visibility
+$button-hover-bg: #f7b07a; // A soft, warm orange
 
 // Book Card Colors
 $book-card-bg: #ffffff; // Keeping white for clarity
