@@ -1,0 +1,54 @@
+@use "../../styles/variables/variables" as v;
+.sidebar {
+  padding: 3rem;
+  height: 100%;
+  grid-area: sidebar;
+  background-color: v.$sidebar-bg;
+
+  .logo {
+    font-family: v.$font-primary;
+    color: v.$primary-text;
+    margin-bottom: 2rem;
+  }
+
+  .menu {
+    //menu title
+    h3 {
+      color: v.$secondary-text;
+    }
+    .menuGroup {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      border-bottom: 2px solid v.$primary-accent;
+      padding: 1rem 0;
+      .menuItem {
+        display: flex;
+        gap: 0.25rem;
+        align-items: center;
+        width: 100%;
+        .iconContainer {
+          background-color: v.$button-bg;
+          border-radius: 0.5rem;
+          width: 32px;
+          height: 32px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          svg {
+            //add a color
+          }
+        }
+        &.active {
+          span {
+            font-weight: 800;
+          }
+          .iconContainer {
+            background-color: v.$button-hover-bg;
+            color: v.$primary-bg;
+          }
+        }
+      }
+    }
+  }
+}
