@@ -85,3 +85,4 @@
 - **Reading Challenges & Badges** – Users can set goals and earn achievements for finishing books.
 - **Public & Private Bookshelves** – Organize personal book collections and share recommendations with friends.
 - **Notifications & Reminders** – Get reminders for unfinished books or scheduled reading sessions.
+- 
