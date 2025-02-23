@@ -1,5 +1,5 @@
 @use "../variables/variables" as v;
-
+@use "../mixins/mixins" as m;
 .homePage {
   .hero {
     min-height: 60dvh;
@@ -13,6 +13,7 @@
       grid-template: 1fr / 2fr 1fr;
       border-bottom-left-radius: 10rem;
       overflow: hidden;
+      max-height: 85dvh;
       div:first-child {
         background-color: v.$hero-bg-left;
       }
@@ -34,18 +35,7 @@
     margin-top: 4rem;
     position: relative;
     .titleContainer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      h2 {
-        color: v.$secondary-text;
-        font-family: v.$font-primary;
-      }
-      a {
-        background-color: v.$secondary-bg;
-        padding: 0.5rem 1rem;
-        border-radius: 0.5rem;
-      }
+      @include m.homePageTitle;
     }
     .bookContainer {
       margin-top: 2.5rem;
@@ -53,8 +43,14 @@
       flex-wrap: wrap;
       justify-content: space-evenly;
       gap: 2rem;
-      position: absolute;
       width: 100%;
+    }
+  }
+  .bookCategory {
+    position: relative;
+    padding: 5%;
+    .titleContainer {
+      @include m.homePageTitle;
     }
   }
 }

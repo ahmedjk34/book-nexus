@@ -1,0 +1,16 @@
+@use "../variables/variables" as v;
+@mixin homePageTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h2 {
+    color: v.$secondary-text;
+    font-family: v.$font-primary;
+  }
+  :nth-child(2) {
+    background-color: v.$secondary-bg;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid v.$primary-accent;
+  }
+}
