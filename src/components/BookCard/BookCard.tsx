@@ -1,0 +1,28 @@
+import React from "react";
+import styles from "./book-card.module.scss";
+import { SimpleBook } from "@/util/Types";
+
+type Props = {
+  book: SimpleBook;
+};
+
+function BookCard({ book }: Props) {
+  return (
+    <div className={styles.bookCard}>
+      <img
+        src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
+        alt={book.title}
+        className={styles.bookCover}
+      />
+      <div className={styles.bookOverlay}>
+        <h3>{book.title}</h3>
+        <h4>
+          Written by:{" "}
+          {book.author_name && book.author_name.slice(0, 2).join(", ")}
+        </h4>
+      </div>
+    </div>
+  );
+}
+
+export default BookCard;

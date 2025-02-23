@@ -1,0 +1,49 @@
+@use "../../styles/variables/variables" as v;
+.bookCard {
+  width: 285px;
+  height: calc(
+    285px * 1.556
+  ); // 1.556 is the approximate aspect ratio of the book cover
+  background-color: v.$secondary-bg;
+  border-radius: 5%;
+  overflow: hidden;
+  border: 1px solid v.$border-color;
+  box-shadow: 0 5px 5px v.$shadow-color;
+  position: relative;
+  transition: scale 0.35s ease-in-out;
+  .bookCover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .bookOverlay {
+    padding: 0.5rem;
+    background-color: rgba($color: #000000, $alpha: 0.7);
+    position: absolute;
+    top: 100%;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+    color: white;
+    font-family: v.$font-primary;
+    transition: top 0.35s ease-in-out;
+    border-radius: inherit;
+    h4 {
+      opacity: 0.6;
+      font-family: v.$font-accent;
+    }
+  }
+  &:hover {
+    .bookOverlay {
+      top: 0;
+      cursor: pointer;
+    }
+    scale: 1.02;
+  }
+}
