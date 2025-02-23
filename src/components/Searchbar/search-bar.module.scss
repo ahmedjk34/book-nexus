@@ -1,0 +1,53 @@
+@use "../../styles/variables/variables" as v;
+.searchbar {
+  background-color: v.$search-bg;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: clamp(35rem, 50%, 60rem);
+  height: 3.75rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  gap: 0.5rem;
+  .categoryComboBox {
+    border-right: 1px solid v.$button-bg;
+    padding: 0rem 0.5rem;
+    color: gray;
+    font-family: v.$font-primary;
+    font-weight: 600;
+    height: 80%;
+    display: flex;
+    align-items: center;
+  }
+  .searchbarIcon {
+    background-color: v.$search-bg;
+    color: v.$button-bg;
+  }
+  .searchbarButton {
+    background-color: v.$search-bg;
+    border: none;
+    outline: none;
+    background-color: v.$search-button-bg;
+    color: v.$search-bg;
+    padding: 0.65rem 2.25rem;
+    border-radius: 0.5rem;
+    font-family: v.$font-primary;
+  }
+  .searchbarInput {
+    flex: 1;
+    border: none;
+    background-color: v.$search-bg;
+    height: 100%;
+    font-family: v.$font-secondary;
+    transition: all 0.3s linear;
+    border-radius: 0.5rem;
+    padding: 0.2rem;
+    &:focus {
+      outline: none;
+    }
+  }
+  transition: scale 0.25s ease-in-out;
+  &:has(:focus-within) {
+    scale: 1.02;
+  }
+}
