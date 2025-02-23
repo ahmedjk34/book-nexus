@@ -12,13 +12,9 @@ $primary-text: #232323; // Darker text for better contrast
 $primary-accent: #cbb89a; // A richer brown-beige accent
 
 // Secondary Colors
-$secondary-bg: #ffffff; // Keeping white for contrast
-$secondary-text: #3d3d3d; // Deeper gray for better readability
+$secondary-bg: #f5f3ef; // Keeping white for contrast
+$secondary-text: #3f3f3f; // Deeper gray for better readability
 $secondary-accent: #dacfb8; // Slightly richer beige accent
-
-// Sidebar Colors
-$sidebar-bg: #f5f3ef; // A bit more depth in the light beige
-$sidebar-text: #3f3f3f; // Slightly darker for better contrast
 
 // Buttons & Inputs
 $button-bg: #ddd8d0; // Slightly warmer neutral for buttons
@@ -26,10 +22,7 @@ $button-text: #232323; // Consistent dark text for readability
 $search-bg: #fafafa; // Very light gray instead of pure white
 $search-border: #bfbfbf; // Slightly darker gray border for better visibility
 $button-hover-bg: #f7b07a; // A soft, warm orange
-
-// Book Card Colors
-$book-card-bg: #ffffff; // Keeping white for clarity
-$book-card-shadow: rgba(0, 0, 0, 0.12); // Slightly stronger shadow
+$search-button-bg: #1c3f3a; // Dark green for search button
 
 // Category Colors
 $category-bg: #e8e5de; // More muted beige for category background
