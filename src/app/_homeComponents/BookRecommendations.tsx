@@ -15,7 +15,7 @@ async function BookRecommendations({}: Props) {
         <Link href="/">View More &gt;</Link>
       </div>
       <div className={styles.bookContainer}>
-        {books.map((book, index) => (
+        {books.map((book) => (
           <BookCard key={book.key} book={book} />
         ))}
       </div>

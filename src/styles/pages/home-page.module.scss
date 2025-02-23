@@ -1,4 +1,5 @@
 @use "../variables/variables" as v;
+
 .homePage {
   .hero {
     min-height: 60dvh;
@@ -31,6 +32,7 @@
   }
   .bookRecommendations {
     margin-top: 4rem;
+    position: relative;
     .titleContainer {
       display: flex;
       justify-content: space-between;
@@ -49,7 +51,23 @@
       margin-top: 2.5rem;
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
+      justify-content: space-evenly;
+      gap: 2rem;
+      position: absolute;
+      width: 100%;
     }
+  }
+}
+
+@media (max-width: 2000px) {
+  .bookContainer > :nth-child(4) {
+    display: none;
+  }
+}
+
+@media (max-width: 1200px) {
+  .bookContainer > :nth-child(3),
+  .bookContainer > :nth-child(4) {
+    display: none;
   }
 }
