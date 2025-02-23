@@ -6,11 +6,12 @@ type Props = {
   book: SimpleBook;
 };
 
+//! Figure out, do you want to use L or M size for the book cover
 function BookCard({ book }: Props) {
   return (
     <div className={styles.bookCard}>
       <img
-        src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
+        src={`https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg`}
         alt={book.title}
         className={styles.bookCover}
       />
