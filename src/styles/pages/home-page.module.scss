@@ -1,0 +1,55 @@
+@use "../variables/variables" as v;
+.homePage {
+  .hero {
+    min-height: 60dvh;
+    position: relative;
+    .heroOverlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      display: grid;
+      grid-template: 1fr / 2fr 1fr;
+      border-bottom-left-radius: 10rem;
+      overflow: hidden;
+      div:first-child {
+        background-color: v.$hero-bg-left;
+      }
+      div:last-child {
+        background-color: v.$hero-bg-right;
+      }
+    }
+    .heroContent {
+      position: relative;
+      z-index: 1;
+      padding: 5%;
+      .heroTitle {
+        font-size: clamp(2rem, 4vw, 2.75rem);
+        margin-bottom: 1.5rem;
+      }
+    }
+  }
+  .bookRecommendations {
+    margin-top: 4rem;
+    .titleContainer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      h2 {
+        color: v.$secondary-text;
+        font-family: v.$font-primary;
+      }
+      a {
+        background-color: v.$secondary-bg;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+      }
+    }
+    .bookContainer {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+  }
+}
