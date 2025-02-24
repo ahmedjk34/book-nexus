@@ -52,6 +52,33 @@
     .titleContainer {
       @include m.homePageTitle;
     }
+    .categoriesSlide {
+      display: none;
+      .category {
+        background-color: v.$category-bg;
+        padding: 1rem;
+        border: 2px solid v.$border-color;
+        border-radius: 0.35rem;
+        img {
+          object-fit: cover;
+          border-radius: 0.175rem;
+        }
+        h4 {
+          font-family: v.$font-primary;
+          text-align: center;
+          color: v.$category-text;
+        }
+      }
+      &.active {
+        margin-top: 2.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        gap: 2rem;
+        width: 100%;
+        animation: fadeIn 1s ease-in-out;
+      }
+    }
   }
 }
 
@@ -65,5 +92,13 @@
   .bookContainer > :nth-child(3),
   .bookContainer > :nth-child(4) {
     display: none;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
