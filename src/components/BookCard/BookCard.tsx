@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./book-card.module.scss";
 import { SimpleBook } from "@/util/Types";
+import Image from "next/image";
 
 type Props = {
   book: SimpleBook;
@@ -10,10 +11,12 @@ type Props = {
 function BookCard({ book }: Props) {
   return (
     <div className={styles.bookCard}>
-      <img
+      <Image
         src={`https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg`}
         alt={book.title}
         className={styles.bookCover}
+        fill
+        priority
       />
       <div className={styles.bookOverlay}>
         <h3>{book.title}</h3>
