@@ -8,8 +8,6 @@ type Props = {};
 
 function Sidebar({}: Props) {
   const path = usePathname(); // Get the current path using usePathname()
-  console.log(path);
-
   return (
     <div className={styles.sidebar}>
       <h2 className={styles.logo}>Book Nexus</h2>

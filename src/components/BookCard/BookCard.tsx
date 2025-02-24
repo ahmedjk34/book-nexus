@@ -15,6 +15,7 @@ function BookCard({ book }: Props) {
         src={`https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg`}
         alt={book.title}
         className={styles.bookCover}
+        sizes="285px"
         fill
         priority
       />
