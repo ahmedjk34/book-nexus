@@ -59,6 +59,7 @@
         padding: 1rem;
         border: 2px solid v.$border-color;
         border-radius: 0.35rem;
+        transition: transform 0.4s ease-in-out;
         img {
           object-fit: cover;
           border-radius: 0.175rem;
@@ -67,6 +68,11 @@
           font-family: v.$font-primary;
           text-align: center;
           color: v.$category-text;
+          font-size: 1.1rem;
+        }
+        &:hover {
+          transform: translateY(-12.5px);
+          cursor: pointer;
         }
       }
       &.active {
@@ -117,12 +123,21 @@
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1315px) {
+  .categoriesSlide {
+    .category:nth-child(4) {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 1275px) {
   .bookContainer > :nth-child(3),
   .bookContainer > :nth-child(4) {
     display: none;
   }
 }
+
 @keyframes fadeIn {
   from {
     opacity: 0;
