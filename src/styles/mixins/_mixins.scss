@@ -16,5 +16,8 @@
     font-family: v.$font-secondary;
     background-color: v.$secondary-bg;
     font-size: 16px;
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
