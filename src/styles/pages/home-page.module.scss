@@ -80,6 +80,35 @@
       }
     }
   }
+  .quoteOfTheDay {
+    padding: 5rem;
+    .titleContainer {
+      @include m.homePageTitle;
+    }
+    .quoteContainer {
+      background-color: v.$primary-accent;
+      padding: 4rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 0.5rem;
+      margin-top: 2rem;
+      //quote
+      q {
+        font-family: v.$font-primary;
+        font-size: 1.5rem;
+        text-align: center;
+        color: v.$primary-text;
+        margin-bottom: 1.5rem;
+        font-size: 2.5rem;
+      }
+      //book , author
+      footer {
+        align-self: flex-end;
+      }
+    }
+  }
 }
 
 @media (max-width: 2000px) {
