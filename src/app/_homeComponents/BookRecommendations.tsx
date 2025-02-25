@@ -3,7 +3,7 @@ import styles from "../../styles/pages/home-page.module.scss";
 import Link from "next/link";
 import { getPopularBooks } from "@/util/API";
 import { SimpleBook } from "@/util/Types";
-import BookCard from "@/components/BookCard/BookCard";
+import { BookCard } from "@/components";
 type Props = {};
 
 async function BookRecommendations({}: Props) {
