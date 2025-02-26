@@ -1,6 +1,7 @@
 @use "../variables/variables" as v;
 @use "../mixins/mixins" as m;
 .homePage {
+  flex: 1;
   .hero {
     min-height: 60dvh;
     position: relative;

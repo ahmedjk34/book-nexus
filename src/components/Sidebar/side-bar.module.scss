@@ -1,12 +1,12 @@
 @use "../../styles/variables/variables" as v;
 .sidebar {
   padding: 3rem;
-  width: 100%;
   grid-area: sidebar;
   position: sticky;
   top: 0;
   background-color: v.$secondary-bg;
   max-height: 100dvh;
+  width: clamp(15vw, 250px, 25vw);
   .logo {
     font-family: v.$font-primary;
     color: v.$primary-text;

@@ -10,10 +10,7 @@
   min-height: 100dvh;
   background-color: v.$primary-bg;
   font-family: v.$font-secondary;
-  display: grid;
-  grid-template-areas: "sidebar content";
-  grid-template-rows: 1fr;
-  grid-template-columns: clamp(15vw, 250px, 25vw) 1fr;
+  display: flex;
 }
 a {
   text-decoration: none;
