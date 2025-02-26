@@ -14,7 +14,7 @@ function Sidebar({}: Props) {
       <div className={styles.menu}>
         <h3>Menu</h3>
         <div className={styles.menuGroup}>
-          {sidebarItems.slice(0, 5).map((item) => (
+          {sidebarItems.slice(0, 7).map((item) => (
             <Link
               key={item.title}
               href={item.link}
@@ -30,7 +30,7 @@ function Sidebar({}: Props) {
           ))}
         </div>
         <div className={styles.menuGroup}>
-          {sidebarItems.slice(5).map((item) => (
+          {sidebarItems.slice(7).map((item) => (
             <Link
               key={item.title}
               href={item.link}
