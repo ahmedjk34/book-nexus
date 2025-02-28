@@ -16,6 +16,18 @@ export async function getPopularBooks(): Promise<any> {
   }
 }
 
+export async function getBooksBySubject(subject: string): Promise<any> {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/subjects/${subject}.json?limit=4`
+    );
+    return response.data.works;
+  } catch (error) {
+    console.error(`Error fetching books by subject (${subject}):`, error);
+    throw error;
+  }
+}
+
 //random-book-quote API
 export async function getQuoteOfTheDay(): Promise<any> {
   try {
