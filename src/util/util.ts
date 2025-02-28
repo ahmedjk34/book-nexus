@@ -31,16 +31,12 @@ export const isDetailedBook = (
   return (book as DetailedBook).availability !== undefined;
 };
 
-// export const processBookAuthors = (
-//   authors: string[] | { key: string; name: string }[]
-// ): string => {
-//   console.log(authors);
-//   if (typeof authors[0] === "string") {
-//     return authors.slice(0, 2).join(", ");
-//   } else {
-//     return authors
-//       .map((author) => author.name)
-//       .slice(0, 2)
-//       .join(", ");
-//   }
-// };
+export const processBookAuthors = (
+  authors: string[] | { key: string; name: string }[] | undefined
+): string => {
+  if (!authors) return "Unknown";
+  const authorNames = authors.map((author) =>
+    typeof author === "string" ? author : author?.name ?? "Unknown"
+  );
+  return authorNames.slice(0).join(", ");
+};
