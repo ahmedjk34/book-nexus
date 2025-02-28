@@ -1,5 +1,5 @@
 @use "../variables/variables" as v;
-@mixin homePageTitle {
+@mixin secondaryTitleContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,4 +20,9 @@
       cursor: pointer;
     }
   }
+}
+
+@mixin pageTitle {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  margin-bottom: 1.5rem;
 }
