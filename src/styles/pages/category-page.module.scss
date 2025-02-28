@@ -1,0 +1,33 @@
+@use "../variables/variables" as v;
+@use "../mixins/mixins" as m;
+.categoryPage {
+  padding: 5%;
+  width: 100%;
+  .pageTitle {
+    @include m.pageTitle;
+  }
+  .categoryContainer {
+    .secondaryTitleContainer {
+      @include m.secondaryTitleContainer;
+    }
+    .booksContainer {
+      @include m.fourBookCardsContainer;
+      & {
+        margin-bottom: 2rem;
+        padding: 2rem;
+        border-radius: 2rem;
+        border: 2px solid v.$border-color;
+      }
+    }
+    &:nth-child(odd) {
+      .booksContainer {
+        background-color: v.$hero-bg-left;
+      }
+    }
+    &:nth-child(even) {
+      .booksContainer {
+        background-color: v.$hero-bg-right;
+      }
+    }
+  }
+}
