@@ -1,3 +1,5 @@
+import { DetailedBook, SimpleBook } from "./Types";
+
 //create a function to extract the current path from a string
 export const extractPath = (str: string): string => {
   const url = new URL(str);
@@ -22,3 +24,23 @@ export const convertTOSnakeCase = (input: string): string => {
     .map((word) => word.toLowerCase())
     .join("_");
 };
+
+export const isDetailedBook = (
+  book: DetailedBook | SimpleBook
+): book is DetailedBook => {
+  return (book as DetailedBook).availability !== undefined;
+};
+
+// export const processBookAuthors = (
+//   authors: string[] | { key: string; name: string }[]
+// ): string => {
+//   console.log(authors);
+//   if (typeof authors[0] === "string") {
+//     return authors.slice(0, 2).join(", ");
+//   } else {
+//     return authors
+//       .map((author) => author.name)
+//       .slice(0, 2)
+//       .join(", ");
+//   }
+// };
