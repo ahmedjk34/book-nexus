@@ -19,7 +19,9 @@ export async function getPopularBooks(): Promise<any> {
 export async function getBooksBySubject(subject: string): Promise<any> {
   try {
     const response = await axios.get(
-      `${BASE_URL}/subjects/${subject}.json?limit=4`
+      `${BASE_URL}/subjects/${subject}.json?limit=4&offset=${getRandomOffset(
+        50
+      )}`
     );
     return response.data.works;
   } catch (error) {
