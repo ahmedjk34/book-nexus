@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.scss";
-import { Sidebar } from "@/components";
+import { AuthNav, Sidebar } from "@/components";
 
 export const metadata: Metadata = {
   title: "BookNexus",
@@ -13,9 +13,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const isAuthenticated = true; //placeholder for authentication status
   return (
     <html lang="en">
       <body id="root">
+        <AuthNav isAuthenticated={isAuthenticated} />
         <Sidebar />
         {children}
       </body>
