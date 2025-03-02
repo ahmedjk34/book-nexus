@@ -13,11 +13,14 @@
   transition: scale 0.35s ease-in-out;
   .bookCover {
     object-fit: cover;
+    position: relative;
+    z-index: 1;
   }
   .bookOverlay {
     padding: 0.5rem;
     background-color: rgba($color: #000000, $alpha: 0.7);
     position: absolute;
+    z-index: 2;
     opacity: 0;
     height: 100%;
     width: 100%;
@@ -37,6 +40,17 @@
       opacity: 0.6;
       font-family: v.$font-accent;
     }
+  }
+  .noBookCoverOverlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 2rem;
+    color: v.$secondary-text;
+    font-family: v.$font-primary;
+    z-index: 0;
   }
   &:hover {
     .bookOverlay {

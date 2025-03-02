@@ -21,7 +21,7 @@ function BookCard({ book }: Props) {
         fill
         priority
       />
-      {/* <h3>No Book Cover Found</h3> */}
+      <div className={styles.noBookCoverOverlay}>No Book Cover Found</div>
       <div className={styles.bookOverlay}>
         <h3>{book.title}</h3>
         <h4>
