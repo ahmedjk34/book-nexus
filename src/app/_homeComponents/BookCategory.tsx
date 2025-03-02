@@ -46,7 +46,7 @@ function BookCategory({}: Props) {
       <div className={styles.titleContainer}>
         <h2>Book Category</h2>
         <button type="button" onClick={(e) => updateSlide()}>
-          View More &gt;
+          Browse Other Categories &gt;
         </button>
       </div>
       {renderSubjects(0, 4, 0)}
