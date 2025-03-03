@@ -1,0 +1,77 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               Int               @id @default(autoincrement())
+  email            String            @unique
+  password         String
+  name             String?
+  created_at       DateTime          @default(now())
+  updated_at       DateTime          @updatedAt
+  reviews          Review[]
+  wishlist         Wishlist?
+  reading_progress ReadingProgress[]
+  quotes           Quote[]
+  collections      Collection[]
+}
+
+model Review {
+  id         Int      @id @default(autoincrement())
+  content    String
+  rating     Int
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  userId     Int
+  bookId     Int
+  user       User     @relation(fields: [userId], references: [id])
+}
+
+model Wishlist {
+  id     Int      @id @default(autoincrement())
+  userId Int      @unique
+  books  String[] //book ids
+  user   User     @relation(fields: [userId], references: [id])
+}
+
+enum ReadingStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+}
+
+model ReadingProgress {
+  id       Int           @id @default(autoincrement())
+  status   ReadingStatus
+  progress Int
+  userId   Int
+  bookId   Int
+  user     User          @relation(fields: [userId], references: [id])
+}
+
+model Quote {
+  id      Int    @id @default(autoincrement())
+  content String
+  userId  Int
+  bookId  String
+  user    User   @relation(fields: [userId], references: [id])
+}
+
+model Collection {
+  id     Int      @id @default(autoincrement())
+  name   String
+  userId Int
+  books  String[]
+  user   User     @relation(fields: [userId], references: [id])
+}
