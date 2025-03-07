@@ -16,3 +16,38 @@ export async function GET(req: NextRequest) {
     return Response.json({ error: "Failed to fetch quotes" }, { status: 500 });
   }
 }
+
+export async function POST(req: NextRequest) {
+  try {
+    const { content, userId, bookId } = await req.json();
+
+    //extract these checks into a util function ?
+
+    if (!content || !userId || !bookId) {
+      return Response.json(
+        { error: "Content, userId, and bookId are required" },
+        { status: 400 }
+      );
+    }
+
+    if (isNaN(Number(userId))) {
+      return Response.json(
+        { error: "userId must be numerical values" },
+        { status: 400 }
+      );
+    }
+
+    const quote = await prisma.quote.create({
+      data: { content, bookId, userId: Number(userId) },
+    });
+
+    //return the quote in the future?
+
+    return Response.json(
+      { message: "Quote added successfully" },
+      { status: 200 }
+    );
+  } catch (error) {
+    return Response.json({ error: "Failed to add a quote" }, { status: 500 });
+  }
+}
