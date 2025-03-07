@@ -30,6 +30,17 @@ export async function getBooksBySubject(subject: string): Promise<any> {
   }
 }
 
+export async function getBookByWorkId(workId: string): Promise<any> {
+  try {
+    const response = await axios.get(`${BASE_URL}/works/${workId}.json`);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching book by work ID (${workId}):`, error);
+    throw error;
+  }
+}
+
 //random-book-quote API
 export async function getQuoteOfTheDay(): Promise<any> {
   try {
