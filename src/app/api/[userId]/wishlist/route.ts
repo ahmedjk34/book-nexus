@@ -1,8 +1,8 @@
 import prisma from "@/lib/prisma";
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiRequest } from "next";
 
 export async function GET(
-  req: Request,
+  req: NextApiRequest,
   { params }: { params: Promise<{ userId: string }> }
 ) {
   const { userId } = await params;
@@ -11,20 +11,18 @@ export async function GET(
     const wishlist = await prisma.wishlist.findUnique({
       where: { userId: Number(userId) },
     });
-    return new Response(JSON.stringify(wishlist), { status: 200 });
+    return Response.json(wishlist, { status: 200 });
   } catch (error) {
-    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
-      status: 500,
-    });
+    return Response.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
 
 export async function POST(
-  req: Request,
+  req: NextApiRequest,
   { params }: { params: Promise<{ userId: string }> }
 ) {
   const { userId } = await params;
-  const { bookId } = await req.json();
+  const { bookId } = req.body;
 
   try {
     const wishlist = await prisma.wishlist.update({
@@ -35,10 +33,36 @@ export async function POST(
         },
       },
     });
-    return new Response(JSON.stringify(wishlist), { status: 200 });
+    return Response.json(wishlist, { status: 200 });
   } catch (error) {
-    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
-      status: 500,
+    return Response.json({ error: "Internal Server Error" }, { status: 500 });
+  }
+}
+
+//even thought it's a delete method, we are updating under the hood (since each user should have a wishlist)
+export async function DELETE(
+  req: NextApiRequest,
+  { params }: { params: Promise<{ userId: string }> }
+) {
+  try {
+    const { userId } = await params;
+    const { bookId } = req.body;
+    const user = await prisma.user.findUnique({
+      where: { id: Number(userId) },
+      include: { wishlist: true },
     });
+    const currentWishlist = user?.wishlist;
+    if (currentWishlist) {
+      const updatedBooks = currentWishlist.books.filter((id) => id !== bookId);
+      const updatedWishlist = await prisma.wishlist.update({
+        where: { userId: Number(userId) },
+        data: { books: updatedBooks },
+      });
+      return Response.json(updatedWishlist, { status: 200 });
+    } else {
+      return Response.json({ error: "Wishlist not found" }, { status: 404 });
+    }
+  } catch (error) {
+    return Response.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
