@@ -41,8 +41,8 @@ export const processBookAuthors = (
   return authorNames.slice(0).join(", ");
 };
 
-export const isNotEmptyFields = (...fields: string[]): boolean => {
-  return fields.every((field) => field.trim().length > 0);
+export const isEmptyFields = (...fields: string[]): boolean => {
+  return fields.some((field) => field.trim().length === 0);
 };
 
 export const isNumericalValue = (value: any): boolean => {
