@@ -52,3 +52,45 @@ export async function POST(
     return Response.json({ error: "Failed to add review" }, { status: 500 });
   }
 }
+
+export async function PUT(
+  req: NextRequest,
+  { params }: { params: { userId: string } }
+) {
+  const { id, content, rating } = await req.json();
+
+  if (isEmptyFields(id, content, rating)) {
+    return Response.json(
+      { error: "Required fields are empty" },
+      { status: 400 }
+    );
+  }
+
+  try {
+    const review = await prisma.review.update({
+      where: { id: Number(id) },
+      data: {
+        content,
+        rating,
+      },
+    });
+    return Response.json(review, { status: 200 });
+  } catch (error) {
+    return Response.json({ error: "Failed to update review" }, { status: 500 });
+  }
+}
+
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: { userId: string } }
+) {
+  const { id } = await req.json();
+  try {
+    await prisma.review.delete({
+      where: { id: Number(id) },
+    });
+    return Response.json({}, { status: 204 });
+  } catch (error) {
+    return Response.json({ error: "Failed to delete review" }, { status: 500 });
+  }
+}
