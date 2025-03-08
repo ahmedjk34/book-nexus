@@ -36,6 +36,8 @@ model Review {
   userId     Int
   bookId     Int
   user       User     @relation(fields: [userId], references: [id])
+
+  @@unique([userId, bookId]) // Ensure one review per user per book
 }
 
 model Wishlist {
