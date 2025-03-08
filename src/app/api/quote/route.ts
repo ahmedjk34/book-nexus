@@ -1,4 +1,5 @@
 import prisma from "@/lib/prisma";
+import { isNotEmptyFields, isNumericalValue } from "@/util/util";
 import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
@@ -23,14 +24,14 @@ export async function POST(req: NextRequest) {
 
     //extract these checks into a util function ?
 
-    if (!content || !userId || !bookId) {
+    if (isNotEmptyFields(content, userId, bookId)) {
       return Response.json(
         { error: "Content, userId, and bookId are required" },
         { status: 400 }
       );
     }
 
-    if (isNaN(Number(userId))) {
+    if (isNumericalValue(Number(userId))) {
       return Response.json(
         { error: "userId must be numerical values" },
         { status: 400 }
