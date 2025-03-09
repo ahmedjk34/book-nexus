@@ -5,7 +5,11 @@ import Link from "next/link";
 import { bookSubjects } from "@/util/staticData";
 import { redirect } from "next/navigation";
 
-async function Page({ params }: { params: Promise<{ pageNumber: string }> }) {
+type Props = {
+  params: Promise<{ pageNumber: string }>;
+};
+
+async function Page({ params }: Props) {
   const pageNumber = Number((await params).pageNumber);
 
   if (isNaN(pageNumber) || pageNumber < 1 || pageNumber > 4) {
