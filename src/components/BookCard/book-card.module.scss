@@ -1,4 +1,5 @@
 @use "../../styles/variables/variables" as v;
+
 .bookCard {
   width: 285px;
   height: calc(
@@ -11,20 +12,21 @@
   box-shadow: 0 5px 5px v.$shadow-color;
   position: relative;
   transition: scale 0.35s ease-in-out;
+
   .bookCover {
     object-fit: cover;
     position: relative;
-    z-index: 1;
+    z-index: 1; // Book cover is behind other elements
   }
+
   .bookOverlay {
     padding: 0.5rem;
     background-color: rgba($color: #000000, $alpha: 0.7);
     position: absolute;
-    z-index: 2;
+    z-index: 3; // Overlay is on top of book cover
     opacity: 0;
     height: 100%;
     width: 100%;
-    z-index: 10;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -36,11 +38,13 @@
     font-family: v.$font-primary;
     transition: opacity 0.35s ease-in-out;
     border-radius: inherit;
+
     h4 {
       opacity: 0.6;
       font-family: v.$font-accent;
     }
   }
+
   .noBookCoverOverlay {
     position: absolute;
     top: 50%;
@@ -50,13 +54,42 @@
     font-size: 2rem;
     color: v.$secondary-text;
     font-family: v.$font-primary;
-    z-index: 0;
+    z-index: 0; // No cover overlay is the lowest in the stack
   }
+
+  .imageLoadingOverlay {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    font-size: 2rem;
+    color: v.$secondary-text;
+    font-family: v.$font-primary;
+    z-index: 2; // Loading overlay should be between the cover and the other overlays
+
+    // Updated Glow effect to move edge to edge
+    background: linear-gradient(80deg, white, rgb(163, 155, 163));
+    background-size: 200% 100%; // make sure the gradient covers the width
+    animation: glowAnimation 8.5s infinite linear;
+  }
+
   &:hover {
     .bookOverlay {
       opacity: 1;
       cursor: pointer;
     }
     scale: 1.02;
+  }
+}
+
+@keyframes glowAnimation {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 0%;
+  }
+  100% {
+    background-position: 0% 0%;
   }
 }
