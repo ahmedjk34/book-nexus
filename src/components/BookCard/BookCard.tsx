@@ -3,14 +3,16 @@ import styles from "./book-card.module.scss";
 import { DetailedBook, SimpleBook } from "@/util/Types";
 import Image from "next/image";
 import { isDetailedBook, processBookAuthors } from "@/util/util";
+import Link from "next/link";
 
 type Props = {
   book: SimpleBook | DetailedBook;
 };
 
 function BookCard({ book }: Props) {
+  console.log(book.key);
   return (
-    <div className={styles.bookCard}>
+    <Link className={styles.bookCard} href={`/book/${book.key.split("/")[2]}`}>
       <Image
         src={`https://covers.openlibrary.org/b/id/${
           isDetailedBook(book) ? book.cover_id : book?.cover_i
@@ -31,7 +33,7 @@ function BookCard({ book }: Props) {
             : processBookAuthors(book.author_name)}
         </h4>
       </div>
-    </div>
+    </Link>
   );
 }
 
