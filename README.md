@@ -8,7 +8,7 @@
 
 - **Next.js** – Fast, server-side rendering for a seamless user experience.
 - **Prisma & PostgreSQL** – Manages user data, book collections, wishlist, reviews, and recommendations.
-- **OpenLibrary API** – For fetching books data.
+- **Google Book API** – For fetching books data.
 - **Tailwind CSS** – Modern and responsive UI for a clean, accessible reading experience.
 - **NextAuth.js** – Secure authentication for user accounts and reading preferences.
 - **Recharts** – Data visualization for reading statistics and progress tracking.
