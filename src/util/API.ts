@@ -4,7 +4,7 @@ import { Edition } from "./Types";
 
 const BASE_URL = "https://openlibrary.org";
 
-//OpenLibrary API
+// OpenLibrary API
 export async function getPopularBooks(): Promise<any> {
   try {
     const response = await axios.get(
@@ -30,7 +30,37 @@ export async function getBooksBySubject(subject: string): Promise<any> {
     throw error;
   }
 }
-function getMostPopularEdition(editionsData: Edition[]): Edition | null {
+
+// Overload signatures
+export function getMostPopularEdition(workId: string): Promise<Edition | null>;
+export function getMostPopularEdition(editionsData: Edition[]): Edition | null;
+
+// Function to get the most popular edition based on workId
+export async function getMostPopularEdition(
+  workId: string | Edition[]
+): Promise<Edition | null> {
+  if (typeof workId === "string") {
+    // If it's a workId (string), fetch editions data
+    try {
+      const editionsResponse = await axios.get(
+        `${BASE_URL}/works/${workId}/editions.json`
+      );
+      const editionsData: Edition[] = editionsResponse.data.entries || [];
+      return getMostPopularEditionFromArray(editionsData); // Use the helper to find the most popular edition
+    } catch (error) {
+      console.error("Error fetching editions:", error);
+      throw error;
+    }
+  } else {
+    // If it's an array of Edition objects, process them directly
+    return getMostPopularEditionFromArray(workId);
+  }
+}
+
+// Function to get the most popular edition from an array of editions
+function getMostPopularEditionFromArray(
+  editionsData: Edition[]
+): Edition | null {
   let mostPopularEdition: Edition | null = null;
 
   for (const edition of editionsData) {
@@ -97,7 +127,7 @@ export async function getFullBookInfo(workId: string, editionId: string) {
   }
 }
 
-//random-book-quote API
+// Random-book-quote API
 export async function getQuoteOfTheDay(): Promise<any> {
   try {
     const response = await axios.get(
