@@ -1,4 +1,4 @@
-import { getMostPopularEdition } from "@/util/API";
+import { getMostPopularEdition } from "@/util/APIUtil";
 import { redirect } from "next/navigation";
 import React from "react";
 
