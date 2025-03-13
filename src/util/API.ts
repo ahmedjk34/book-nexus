@@ -30,64 +30,60 @@ export async function getBooksBySubject(subject: string): Promise<any> {
     throw error;
   }
 }
+function getMostPopularEdition(editionsData: Edition[]): Edition | null {
+  let mostPopularEdition: Edition | null = null;
+
+  for (const edition of editionsData) {
+    if (!edition.pagination) continue; // Skip editions without pages
+
+    const editionYear = parseInt(edition.publish_date) || 0;
+    const currentBestYear = mostPopularEdition
+      ? parseInt(mostPopularEdition.publish_date) || 0
+      : 0;
+
+    // Update if this edition is more recent
+    if (!mostPopularEdition || editionYear > currentBestYear) {
+      mostPopularEdition = edition;
+    }
+  }
+
+  return mostPopularEdition;
+}
 
 export async function getFullBookInfo(workId: string, editionId: string) {
   try {
-    // Fetch work data
-    const response = await axios.get(`${BASE_URL}/works/${workId}.json`);
-    const workData = response.data;
-
-    // Fetch editions data
-    const editionsResponse = await axios.get(
-      `${BASE_URL}/works/${workId}/editions.json`
+    // Fetch work, editions, and ratings in parallel
+    const [workResponse, editionsResponse, ratingsResponse] = await Promise.all(
+      [
+        axios.get(`${BASE_URL}/works/${workId}.json`),
+        axios.get(`${BASE_URL}/works/${workId}/editions.json`),
+        axios.get(`${BASE_URL}/works/${workId}/ratings.json`),
+      ]
     );
+
+    const workData = workResponse.data;
     const editionsData: Edition[] = editionsResponse.data.entries || [];
+    const ratingsData = ratingsResponse.data;
 
-    // Sort editions by highest ratings
-    const mostPopularEdition =
-      editionsData
-        .filter((edition) => edition.isbn_13 || edition.pagination) // Prefer editions with ISBN or page count
-        .sort((a, b) => {
-          // Prioritize editions with an ISBN
-          if (a.isbn_13 && !b.isbn_13) return -1;
-          if (!a.isbn_13 && b.isbn_13) return 1;
-
-          // Sort by number of pages (pagination)
-          const pagesA = parseInt(a.pagination) || 0;
-          const pagesB = parseInt(b.pagination) || 0;
-          if (pagesB !== pagesA) return pagesB - pagesA;
-
-          // Sort by latest published edition
-          const yearA = parseInt(a.publish_date) || 0;
-          const yearB = parseInt(b.publish_date) || 0;
-          return yearB - yearA;
-        })[0] || null;
-
-    // Validate the provided editionId
+    // Validate the provided editionId FIRST
     const validEdition = editionsData.find(
       (edition) => edition.key.split("/")[2] === editionId
     );
 
-    // Use the provided editionId if valid, otherwise fallback to the most famous edition
-    const selectedEdition = validEdition || mostPopularEdition;
+    // Only fetch the most popular edition if the provided one is invalid
+    const selectedEdition = validEdition || getMostPopularEdition(editionsData);
 
-    // Fetch author details
+    // Fetch author details in parallel, but only if needed
     const authorKey = workData?.authors?.[0]?.author?.key;
     const authorResponse = authorKey
       ? await axios.get(`${BASE_URL}${authorKey}.json`)
       : null;
-    const authorData = authorResponse?.data;
-
-    // Fetch book ratings & reviews
-    const ratingsResponse = await axios.get(
-      `${BASE_URL}/works/${workId}/ratings.json`
-    );
-    const ratingsData = ratingsResponse.data;
+    const authorData = authorResponse?.data || null;
 
     return {
       title: workData.title,
       author: authorData?.name || "Unknown Author",
-      authorDetails: authorData || null,
+      authorDetails: authorData,
       description:
         workData?.description?.value ||
         workData?.description ||
