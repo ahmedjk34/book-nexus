@@ -11,21 +11,35 @@ export async function getPopularBooks(): Promise<any> {
     const response = await axios.get(
       `${BASE_URL}/search.json?q=popular&limit=4&offset=${getRandomOffset(100)}`
     );
-    return response.data.docs;
+    console.log(response.data.docs);
+    return response.data.docs.map((book: any) => ({
+      key: book.key,
+      title: book.title,
+      cover_id: book.cover_i,
+      authors: book.author_name,
+    }));
   } catch (error) {
     console.error("Error fetching popular books:", error);
     throw error;
   }
 }
 
-export async function getBooksBySubject(subject: string): Promise<any> {
+export async function getBooksBySubject(
+  subject: string
+): Promise<{ title: string; cover_id?: number; authors: string[] }[]> {
   try {
     const response = await axios.get(
       `${BASE_URL}/subjects/${subject}.json?limit=4&offset=${getRandomOffset(
         50
       )}`
     );
-    return response.data.works;
+
+    return response.data.works.map((book: any) => ({
+      key: book.key,
+      title: book.title,
+      cover_id: book.cover_id,
+      authors: book.authors.map((author: any) => author.name),
+    }));
   } catch (error) {
     console.error(`Error fetching books by subject (${subject}):`, error);
     throw error;
