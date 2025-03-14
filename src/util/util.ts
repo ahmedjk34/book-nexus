@@ -25,12 +25,13 @@ export const convertTOSnakeCase = (input: string): string => {
     .join("_");
 };
 
-export const isDetailedBook = (
-  book: DetailedBook | SimpleBook
-): book is DetailedBook => {
-  return (book as DetailedBook).availability !== undefined;
-};
+// export const isDetailedBook = (
+//   book: DetailedBook | SimpleBook
+// ): book is DetailedBook => {
+//   return (book as DetailedBook).availability !== undefined;
+// };
 
+//Refactor this ?
 export const processBookAuthors = (
   authors: string[] | { key: string; name: string }[] | undefined
 ): string => {
