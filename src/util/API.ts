@@ -1,17 +1,16 @@
 import axios from "axios";
 import { getRandomOffset } from "./util";
-import { Edition } from "./Types";
+import { DetailedBook, Edition, SimpleBook } from "./Types";
 import { getMostPopularEdition } from "./APIUtil";
 
 const BASE_URL = "https://openlibrary.org";
 
 // OpenLibrary API
-export async function getPopularBooks(): Promise<any> {
+export async function getPopularBooks(): Promise<SimpleBook[]> {
   try {
     const response = await axios.get(
       `${BASE_URL}/search.json?q=popular&limit=4&offset=${getRandomOffset(100)}`
     );
-    console.log(response.data.docs);
     return response.data.docs.map((book: any) => ({
       key: book.key,
       title: book.title,
@@ -26,7 +25,7 @@ export async function getPopularBooks(): Promise<any> {
 
 export async function getBooksBySubject(
   subject: string
-): Promise<{ title: string; cover_id?: number; authors: string[] }[]> {
+): Promise<SimpleBook[]> {
   try {
     const response = await axios.get(
       `${BASE_URL}/subjects/${subject}.json?limit=4&offset=${getRandomOffset(
@@ -46,7 +45,10 @@ export async function getBooksBySubject(
   }
 }
 
-export async function getFullBookInfo(workId: string, editionId: string) {
+export async function getFullBookInfo(
+  workId: string,
+  editionId: string
+): Promise<DetailedBook> {
   try {
     // Fetch work, editions, and ratings in parallel
     const [workResponse, editionsResponse, ratingsResponse] = await Promise.all(
