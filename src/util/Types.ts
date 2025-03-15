@@ -7,13 +7,8 @@ export interface SimpleBook {
 
 export interface DetailedBook {
   title: string;
-  author: string;
-  authorDetails?: {
-    name: string;
-    birth_date?: string;
-    death_date?: string;
-    bio?: string | { value: string };
-  } | null;
+  authors_names: string[];
+  authors_details: Author[];
   description: string;
   genres: string[];
   editions: Edition | Edition[];
@@ -55,4 +50,32 @@ export interface Edition {
     type: string;
     value: string;
   };
+}
+
+export interface Author {
+  photos: number[];
+  source_records: string[];
+  type: { key: string };
+  links: {
+    url: string;
+    title: string;
+    type: object[];
+  }[];
+  remote_ids: {
+    isni: string;
+    wikidata: string;
+    viaf: string;
+  };
+  title: string;
+  personal_name: string;
+  key: string;
+  name: string;
+  birth_date: string;
+  bio: string;
+  alternate_names: string[];
+  death_date: string;
+  latest_revision: number;
+  revision: number;
+  created: { type: string; value: string };
+  last_modified: { type: string; value: string };
 }
