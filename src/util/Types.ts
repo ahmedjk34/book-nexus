@@ -17,6 +17,7 @@ export interface DetailedBook {
   description: string;
   genres: string[];
   editions: Edition | Edition[];
+  cover_id: string;
 }
 
 export interface Edition {

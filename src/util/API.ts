@@ -88,6 +88,7 @@ export async function getFullBookInfo(
         "No description available",
       genres: workData?.subjects || [],
       editions: selectedEdition || [],
+      cover_id: selectedEdition?.covers[0] || workData.covers[0] || undefined,
     };
   } catch (error) {
     console.error(`Error fetching book by work ID (${workId}):`, error);
