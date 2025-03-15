@@ -37,7 +37,7 @@ export interface Edition {
   works: Array<{
     key: string;
   }>;
-  covers: number[];
+  covers: number[] | number;
   number_of_pages: number;
   weight: string;
   latest_revision: number;
