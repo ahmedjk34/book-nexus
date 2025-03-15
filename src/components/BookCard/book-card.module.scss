@@ -57,39 +57,11 @@
     z-index: 0; // No cover overlay is the lowest in the stack
   }
 
-  .imageLoadingOverlay {
-    position: absolute;
-    text-align: center;
-    width: 100%;
-    height: 100%;
-    font-size: 2rem;
-    color: v.$secondary-text;
-    font-family: v.$font-primary;
-    z-index: 2; // Loading overlay should be between the cover and the other overlays
-
-    // Updated Glow effect to move edge to edge
-    background: linear-gradient(80deg, white, rgb(163, 155, 163));
-    background-size: 200% 100%; // make sure the gradient covers the width
-    animation: glowAnimation 8.5s infinite linear;
-  }
-
   &:hover {
     .bookOverlay {
       opacity: 1;
       cursor: pointer;
     }
     scale: 1.02;
-  }
-}
-
-@keyframes glowAnimation {
-  0% {
-    background-position: 0% 0%;
-  }
-  50% {
-    background-position: 100% 0%;
-  }
-  100% {
-    background-position: 0% 0%;
   }
 }

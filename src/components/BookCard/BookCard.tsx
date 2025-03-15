@@ -3,7 +3,7 @@ import styles from "./book-card.module.scss";
 import { SimpleBook } from "@/util/Types";
 import { processBookAuthors } from "@/util/util";
 import Link from "next/link";
-import BookImage from "./BookImage";
+import VerticalBookImage from "../VerticalBookImage/VerticalBookImage";
 
 type Props = {
   book: SimpleBook;
@@ -14,7 +14,7 @@ function BookCard({ book }: Props) {
 
   return (
     <Link className={styles.bookCard} href={`/book/${book.key.split("/")[2]}`}>
-      <BookImage src={bookImageURL} alt={book.title} />
+      <VerticalBookImage src={bookImageURL} alt={book.title} />
       <div className={styles.noBookCoverOverlay}>No Book Cover Found</div>
       <div className={styles.bookOverlay}>
         <h3>{book.title}</h3>
