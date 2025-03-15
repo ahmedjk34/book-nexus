@@ -71,24 +71,38 @@ export async function getFullBookInfo(
     // Only fetch the most popular edition if the provided one is invalid
     const selectedEdition = validEdition || getMostPopularEdition(editionsData);
 
-    // Fetch author details in parallel, but only if needed
-    const authorKey = workData?.authors?.[0]?.author?.key;
-    const authorResponse = authorKey
-      ? await axios.get(`${BASE_URL}${authorKey}.json`)
-      : null;
-    const authorData = authorResponse?.data || null;
+    // Fetch all authors in parallel
+    const authorKeys =
+      selectedEdition?.authors?.map((author) => author.key) || [];
+    const authorResponses = await Promise.all(
+      authorKeys.map((key) => axios.get(`${BASE_URL}${key}.json`))
+    );
+
+    // Extract author names
+    const authorsNames = authorResponses.map((response) => response.data.name);
+
+    const authorsDetails = authorResponses.map((response) => response.data);
+
+    const getCoverId = (covers: number[] | number | undefined) =>
+      Array.isArray(covers) ? covers[0] : covers;
+
+    const cover_id =
+      getCoverId(selectedEdition?.covers) ||
+      getCoverId(workData?.covers) ||
+      undefined;
 
     return {
       title: workData.title,
-      author: authorData?.name || "Unknown Author",
-      authorDetails: authorData,
+      authors_names:
+        authorsNames.length > 0 ? authorsNames : ["Unknown Author"],
+      authors_details: authorsDetails,
       description:
         workData?.description?.value ||
         workData?.description ||
         "No description available",
       genres: workData?.subjects || [],
       editions: selectedEdition || [],
-      cover_id: selectedEdition?.covers[0] || workData.covers[0] || undefined,
+      cover_id: cover_id,
     };
   } catch (error) {
     console.error(`Error fetching book by work ID (${workId}):`, error);
