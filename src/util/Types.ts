@@ -1,7 +1,7 @@
 export interface SimpleBook {
   key: string;
   title: string;
-  cover_id: string;
+  cover_id: number;
   authors: string[];
 }
 
@@ -12,7 +12,7 @@ export interface DetailedBook {
   description: string;
   genres: string[];
   editions: Edition | Edition[];
-  cover_id: string;
+  cover_id: number;
 }
 
 export interface Edition {
