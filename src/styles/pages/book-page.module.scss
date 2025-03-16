@@ -3,14 +3,15 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  color: v.$primary-text;
+  font-family: v.$font-primary;
   .pageContainer {
     width: 100%;
-    max-width: 1100px;
+    max-width: 1150px;
     min-height: 100vh;
     position: relative;
     border-left: 1px solid black;
     border-right: 1px solid black;
-
     .heroSection {
       width: 100%;
       height: 100%;
@@ -20,7 +21,8 @@
       border-bottom-left-radius: 10rem;
       border-bottom-right-radius: 10rem;
       overflow: hidden;
-      max-height: 95dvh;
+      height: 95dvh;
+      max-height: 725px;
       .sideInfo {
         background-color: v.$hero-bg-left;
         display: flex;
@@ -28,6 +30,39 @@
         height: 100%;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
+        gap: 2dvh;
+        button {
+          padding: 0.75rem 1rem;
+          outline: none;
+          font-family: v.$font-primary;
+          font-size: 0.9rem;
+          font-weight: 500;
+          border-radius: 0.5rem;
+          color: v.$button-text;
+          //to align icon
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 0.3rem;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        button:nth-of-type(1) {
+          background-color: v.$primary-accent;
+          border: 1px solid white;
+        }
+        button:nth-of-type(2) {
+          background-color: #7c9e3b;
+          color: white;
+          border: 1px solid gray;
+        }
+        button:nth-of-type(3) {
+          background-color: v.$secondary-accent;
+          border: 1px solid white;
+        }
       }
       .mainInfo {
         background-color: v.$hero-bg-right;
